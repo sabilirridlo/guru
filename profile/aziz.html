@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pendidik - MIS SABILIRRIDLO</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --navy: #1e293b;
+            --emerald: #059669;
+            --emerald-light: #ecfdf5;
+            --gold: #fef3c7;
+            --gold-dark: #92400e;
+            --text-main: #1f2937;
+            --text-muted: #64748b;
+            --border: #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            /* Latar belakang dot-grid agar senada dengan halaman sebelumnya */
+            background-image: radial-gradient(#e5e7eb 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand img { height: 40px; }
+        .brand span { font-weight: 800; color: var(--navy); font-size: 1.1rem; }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Tombol Kembali */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--emerald); transform: translateX(-5px); }
+
+        /* PROFILE CARD AREA */
+        .profile-wrapper {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 400px 1fr; /* Kiri 400px, kanan sisanya */
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LEFT COLUMN: PHOTO */
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* RIGHT COLUMN: INFO */
+        .profile-details {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-badge {
+            background: var(--gold);
+            color: var(--gold-dark);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-details h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .bio-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        /* INFO GRID (Email, Jabatan, dll) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* SOSIAL MEDIA */
+        .social-box {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            color: var(--navy);
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .social-btn:hover {
+            background: var(--navy);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .profile-wrapper { grid-template-columns: 1fr; }
+            .profile-image { min-height: 400px; }
+            .profile-details { padding: 40px; }
+            .profile-details h1 { font-size: 2rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { margin: 30px auto; }
+            .profile-details { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Minimalis -->
+    <nav>
+        <a href="#" class="brand">
+            <img src="https://misabilirridlo.sch.id/assets/img/Logo-MIS-2.png" alt="Logo">
+            <span>MIS SABILIRRIDLO</span>
+        </a>
+    </nav>
+
+    <main class="container">
+        <!-- Tombol Kembali ke halaman sebelumnya -->
+        <a href="javascript:history.back()" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Direktori
+        </a>
+
+        <div class="profile-wrapper">
+            <!-- Bagian Kiri: Foto Guru -->
+            <div class="profile-image">
+                <img src="https://kemenag-pendis-bucket-production1.oss-ap-southeast-5.aliyuncs.com/images/personnels/phpsAhkZq_1739503397.jpg" alt="Foto Profil Guru">
+            </div>
+
+            <!-- Bagian Kanan: Detail Informasi -->
+            <div class="profile-details">
+                <span class="role-badge">Kepala Madrasah</span>
+                <h1>Aziz Asyhar, S.TH.I</h1>
+                
+                <p class="bio-text">
+                    "Visi saya adalah menjadikan MIS SABILIRRIDLO sebagai pusat keunggulan pendidikan Islam yang integratif, di mana teknologi dan karakter Qur'ani berjalan beriringan."
+                </p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Jabatan Struktural</span>
+                        <span class="info-value">Kepala Madrasah</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email Instansi</span>
+                        <span class="info-value">aziz.asyhar@misabilirridlo.sch.id</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Pendidikan Terakhir</span>
+                        <span class="info-value">S1 Studi Agama Islam</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Masa Bakti</span>
+                        <span class="info-value">Sejak 2015</span>
+                    </div>
+                    <!-- Kamu bisa tambah baris data lagi di sini nanti -->
+                </div>
+
+                <!-- Media Sosial Guru -->
+                <div class="social-box">
+                    <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-btn" title="WhatsApp"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-btn" title="LinkedIn"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding-bottom: 40px; color: var(--text-muted); font-size: 0.85rem;">
+        &copy; 2026 MIS SABILIRRIDLO Jombang. Profil Tenaga Pendidik.
+    </footer>
+
+</body>
+</html>
